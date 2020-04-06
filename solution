@@ -1,0 +1,47 @@
+//*******************************************************************
+// Welcome to CompileJava!
+// If you experience any issues, please contact us ('More Info')  -->
+//*******************************************************************
+
+import java.lang.Math; // headers MUST be above the first class
+
+// one class needs to have a main() method
+public class HelloWorld
+{
+  // arguments are passed using the text field below this editor
+  public static void main(String[] args)
+  {
+    OtherClass oc = new OtherClass();
+	System.out.println(oc.temp("A d Z k m",3));
+  }
+}
+
+// you can add other public classes to this editor in any order
+public class OtherClass {
+  char arr[];
+  
+  String temp(String str, int n){
+   arr = str.toCharArray();
+   for(int i=0; i<arr.length; i++){
+     if( (int)arr[i] == (int)' ' ) continue;
+     else if( (int)arr[i] >= (int)'A' && (int)arr[i] <= (int)'Z' ){
+       System.out.println("대문자 입장");
+       if( (int)arr[i] + n > (int)'Z' ) {
+         System.out.println("대문자 오버플로우");
+         arr[i] = (char)((int)'A' + (int)arr[i]+n - (int)'Z' -1);
+         continue;
+       }
+       arr[i] = (char)((int)arr[i]+n);
+     }else if( (int)arr[i] >= (int)'a' && (int)arr[i] <= (int)'z' ){
+       System.out.println("소문자 입장");
+       if( (int)arr[i] + n > (int)'z' ) {
+         System.out.println("소문자 오버플로우");
+         arr[i] = (char)((int)'a' + (int)arr[i]+n - (int)'z'-1);
+         continue;
+       }
+       arr[i] = (char)((int)arr[i]+n);
+     }else System.out.println("잘못된 접근");
+  }
+   return String.valueOf(arr);
+}
+}
